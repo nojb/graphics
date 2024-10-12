@@ -223,7 +223,6 @@ static DWORD WINAPI gr_open_graph_internal(value arg)
       SetEvent(open_graph_event);
       return 1;
     }
-#if 0
     if (x != CW_USEDEFAULT) {
       rc.left = 0;
       rc.top = 0;
@@ -232,7 +231,6 @@ static DWORD WINAPI gr_open_graph_internal(value arg)
       AdjustWindowRect(&rc,GetWindowLong(grwindow.hwnd,GWL_STYLE),0);
       MoveWindow(grwindow.hwnd,x,y,rc.right-rc.left,rc.bottom-rc.top,1);
     }
-#endif
   }
   gr_reset();
   ShowWindow(grwindow.hwnd,SW_SHOWNORMAL);
