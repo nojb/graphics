@@ -309,9 +309,16 @@ CAMLprim value caml_gr_size_y(value unit)
 
 CAMLprim value caml_gr_resize_window (value vx, value vy)
 {
+  RECT rc;
   gr_check_open ();
 
-  /* FIXME TODO implement this function... */
+  rc.left = 0;
+  rc.top = 0;
+  rc.right = Int_val(vx);
+  rc.bottom = Int_val(vy);
+  AdjustWindowRect(&rc,GetWindowLong(grwindow.hwnd,GWL_STYLE),0);
+  SetWindowPos(grwindow.hwnd, NULL, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+  gr_reset();
 
   return Val_unit;
 }
